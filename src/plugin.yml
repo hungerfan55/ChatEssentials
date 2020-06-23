@@ -1,0 +1,9 @@
+name: ChatEssentials
+version: "1.0.0"
+main: ChatEssentials.Main
+api : ["1.0.9"]
+commands :
+  chat:
+    usage: /<command>
+    description: Main Chat Manager Command.
+    alliases: [c, ch]
