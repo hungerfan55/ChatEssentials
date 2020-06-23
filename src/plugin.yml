@@ -7,3 +7,19 @@ commands :
     usage: /<command>
     description: Main Chat Manager Command.
     alliases: [c, ch]
+    permission: chat.help
+  clearchat:
+    usage: /<command>
+    description: ClearChat command
+    aliases: [cc]
+    permission: chat.clearchat
+  mutechat:
+    usage: /<command>
+    description: MuteChat command
+    aliases: [mc]
+    permission: chat.mutechat
+  slowchat:
+    usage: /<command>
+    description: SlowChat command
+    aliases: [sc]
+    permission: chat.slowchat
