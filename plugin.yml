@@ -14,4 +14,7 @@ commands :
   mutechat:
     description: MuteChat command
     permission: chat.mutechat
+  ignore:
+    description: ignore command to ignore certain players
+    permission: chat.ignore
 

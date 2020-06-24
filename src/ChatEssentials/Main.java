@@ -10,12 +10,14 @@ import cn.nukkit.event.player.PlayerChatEvent;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class Main extends PluginBase implements Listener {
-
+    HashMap<Player, ArrayList<Player>> i = Manager.getInstance().getIgnore();
     public static boolean Muted = false;
     public static boolean SlowChat = false;
 
@@ -85,6 +87,46 @@ public class Main extends PluginBase implements Listener {
                 }
             }
         }
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("[Ignore] Only Players can ignore other users!");
+            return true;
+        }
+
+        if (cmd.getName().equalsIgnoreCase("ignore")) {
+            if (sender.hasPermission("chat.ignore")) {
+                if (args.length == 0) {
+                    p.sendMessage("Please specify a player to ignore!");
+                    return true;
+                }
+                Player t = getServer().getPlayer(args[0]);
+                if (t == null) {
+                    sender.sendMessage("[Ignore] Could not find player " + args[0] + "!");
+                    return true;
+                }
+                if (this.i.get(p) == null) {
+                    ArrayList<Player> al = new ArrayList<>();
+                    al.add(t);
+                    this.i.put(p, al);
+                    p.sendMessage(" You are now ignoring " + t.getName() + "!");
+                    return true;
+                }
+                if (((ArrayList) this.i.get(p)).contains(t)) {
+                    ArrayList<Player> al = this.i.get(p);
+                    al.remove(t);
+                    this.i.put(p, al);
+                    p.sendMessage("You are no longer ignoring " + t.getName() + "!");
+                    return true;
+                }
+                if (!((ArrayList) this.i.get(p)).contains(t)) {
+                    ArrayList<Player> al = this.i.get(p);
+                    al.add(t);
+                    this.i.put(p, al);
+                    p.sendMessage("[Ignore] You are now ignoring " + t.getName() + "!");
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
     //Events start here
@@ -102,5 +144,16 @@ public class Main extends PluginBase implements Listener {
                 event.setCancelled(false);
             }
         }
+
+
+        Set<CommandSender> r = event.getRecipients();
+        for (Player pls : getServer().getOnlinePlayers().values()) {
+            if (!this.i.containsKey(pls))
+                return;
+            if (((ArrayList)this.i.get(pls)).contains(player)) {
+                r.remove(pls);
+            }
+        }
+
     }
 }
