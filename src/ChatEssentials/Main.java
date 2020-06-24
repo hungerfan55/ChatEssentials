@@ -8,6 +8,7 @@ import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerChatEvent;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.utils.TextFormat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class Main extends PluginBase implements Listener {
 
     @Override
     public void onEnable(){
-        getServer().getLogger().alert("§2PLUGIN ENABLED");
+        getLogger().info(TextFormat.GREEN + "has been enabled.");
         getServer().getPluginManager().registerEvents(this, this);
         saveDefaultConfig();
         reloadConfig();
