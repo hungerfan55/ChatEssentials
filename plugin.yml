@@ -17,4 +17,9 @@ commands :
   ignore:
     description: ignore command to ignore certain players
     permission: chat.ignore
+  cmdspy:
+    description: See all commands that players see
+    permission: chat.cmdspy
+
+
 

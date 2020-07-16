@@ -1,0 +1,12 @@
+messages:
+  prefix: "§4[chat] "
+  noperm: "§cYou do not have permission to do that"
+  spy_onn: "§cYou're now spying on kids!"
+  spy_off: "§cYou're no longer spying on kids!"
+  mutechat: "§7Chat has been muted by §c"
+  unmutechat: "§7Chat has been unmuted by §c"
+  currentlymuted: "§cThe chat is currently muted"
+  specifyplayer: "§cPlease specify a player to ignore!"
+  playernotfound: "§7Could not find player "
+  nowignoring: "§cYou are now ignoring §7 "
+  stoppedignoring: "§cYou are no longer ignoring §7"
